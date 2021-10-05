@@ -12,7 +12,6 @@
 
 <h1>GetForm</h1>
 
-<div id="message" class="warning"></div>
 
 
 <form id="myform" method="post" action="/home/useform">
@@ -21,10 +20,10 @@
     <label>Email</label><input type="email" id="Email" name="Email" /><span class="warning" id="EmailW"></span><br />
     <label>Password </label><input type="password" id="Password" name="Password" /><span class="warning" id="PasswordW"></span><br />
     <label>Confirm Password</label><input type="password" id="ConfirmPassword" name="ConfirmPassword" /><span></span><br />
+    <input type="submit" value="Register" />
 
 </form>
 
-<button id="mybutton">Submit</button>
 
 
 <script>
@@ -39,11 +38,12 @@
         let cpassword = document.querySelector('#ConfirmPassword').value;
 
         let result = true;
+       
         if (password != cpassword) {
             document.querySelector('#PasswordW').innerHTML = 'Passwords do not match';
             result = false;
         }
-        if (email.indexOf('.') == -1 || email.indexOf('@@' == -1)) {
+        if (email.indexOf('.') == -1 || email.indexOf('@@') == -1) {
             document.querySelector('#EmailW').innerHTML = 'Email must contain an @@ and a.';
         }
         if (firstName.length < 2) {
@@ -57,31 +57,11 @@
         return result;
     }
 
-    myform.addEventListener('click', function (event) {
+    myform.addEventListener('submit', function (event) {
         if (validateForm() == false) {
             console.log('Validation failed, skipping submit');
             event.preventDefault();
         }
     });
-
-    function clearMessage() {
-        document.querySelector('#message').innerText = '';
-    }
-
-    let t1 = document.querySelector('#FirstName');
-    t1.addEventListener('keypress', clearMessage);
-
-    let t1 = document.querySelector('#LastName');
-    t1.addEventListener('keypress', clearMessage);
-
-    let t1 = document.querySelector('#Email');
-    t1.addEventListener('keypress', clearMessage);
-
-    let t1 = document.querySelector('#Password');
-    t1.addEventListener('keypress', clearMessage);
-
-    let t1 = document.querySelector('#ConfirmPassword');
-    t1.addEventListener('keypress', clearMessage);
-
 
 </script>

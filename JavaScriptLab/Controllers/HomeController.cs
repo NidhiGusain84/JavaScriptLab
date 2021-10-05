@@ -28,9 +28,9 @@ namespace JavaScriptLab.Controllers
             return View();
         }
 
-        public IActionResult UseForm()
+        public IActionResult UseForm(UserInfo userInfo)
         {
-            return View();
+            return View(userInfo);
         }
         public IActionResult Privacy()
         {
